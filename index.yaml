@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   amgate:
   - apiVersion: v2
+    appVersion: 0.1.6
+    created: "2025-03-31T07:39:13.780871687Z"
+    description: A Helm chart of Drumato/amgate for Kubernetes
+    digest: f7e77f9b0cfaeeb6aec09874cc75a7a7486c9e10cea3c07f2a0146430079d520
+    name: amgate
+    type: application
+    urls:
+    - https://github.com/Drumato/helm-charts/releases/download/amgate-0.1.6/amgate-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
     appVersion: 0.1.5
     created: "2025-03-28T09:21:32.299753502Z"
     description: A Helm chart of Drumato/amgate for Kubernetes
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/Drumato/helm-charts/releases/download/amgate-0.1.5/amgate-0.1.5.tgz
     version: 0.1.5
-generated: "2025-03-28T09:21:32.299765004Z"
+generated: "2025-03-31T07:39:13.780883689Z"
