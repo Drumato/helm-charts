@@ -1,0 +1,131 @@
+# Default values for targetgroup-senpai.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/drumato/targetgroup-senpai
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# Environment variables for the targetgroup-senpai application
+env:
+  # AWS Configuration (required for AWS SDK)
+  - name: AWS_REGION
+    value: "ap-northeast-1"
+  # Uncomment and set AWS credentials if not using IAM roles (not recommended for production)
+  # - name: AWS_ACCESS_KEY_ID
+  #   value: ""
+  # - name: AWS_SECRET_ACCESS_KEY
+  #   value: ""
+
+  # Application Configuration (required)
+  - name: VPC_ID
+    value: "vpc-xxxxxxxxxxxxxxxxx"  # Replace with your actual VPC ID
+
+  # Application Configuration (optional, with defaults)
+  - name: LOG_LEVEL
+    value: "info"  # Options: debug, info, warn, error
+  - name: INTERVAL_SECONDS
+    value: "60"  # How often to check for changes (seconds)
+  - name: DRY_RUN
+    value: "false"  # Set to true for testing without making changes
+  - name: CLIENT_TIMEOUT_SECONDS
+    value: "10"  # AWS API client timeout
+  - name: MATCHING_LABEL_KEY
+    value: "app.kubernetes.io/managed-by"  # Label key to match services
+  - name: MATCHING_LABEL_VALUE
+    value: "targetgroup-senpai"  # Label value to match services
+
+# Secrets for sensitive environment variables
+# These will be created as a Kubernetes Secret and mounted as environment variables
+envSecret:
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+# - name: foo
+#   secret:
+#     secretName: mysecret
+#     optional: false
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
