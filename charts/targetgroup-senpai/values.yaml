@@ -31,6 +31,9 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
+# Restart policy for the pod
+restartPolicy: Always
+
 securityContext: {}
   # capabilities:
   #   drop:
@@ -39,25 +42,6 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 8080
-
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: Prefix
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -99,17 +83,22 @@ env:
     value: "app.kubernetes.io/managed-by"  # Label key to match services
   - name: MATCHING_LABEL_VALUE
     value: "targetgroup-senpai"  # Label value to match services
+  - name: MIN_INSTANCE_COUNT
+    value: "3"  # Minimum number of instances required for target group operations
+  - name: DELETE_ORPHAN_TARGET_GROUPS
+    value: "true"  # Delete target groups without corresponding services
 
 # Secrets for sensitive environment variables
 # These will be created as a Kubernetes Secret and mounted as environment variables
 envSecret:
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+
+
+# Init containers
+initContainers: []
+# - name: init-container
+#   image: busybox:1.28
+#   command: ['sh', '-c', 'echo Initializing...']
 
 # Additional volumes on the output Deployment definition.
 volumes: []
