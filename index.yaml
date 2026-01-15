@@ -21,4 +21,15 @@ entries:
     urls:
     - https://github.com/Drumato/helm-charts/releases/download/amgate-0.1.5/amgate-0.1.5.tgz
     version: 0.1.5
-generated: "2025-03-31T07:39:13.780883689Z"
+  targetgroup-senpai:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2026-01-15T08:22:31.335462852Z"
+    description: A Helm chart of Drumato/targetgroup-senpai for Kubernetes
+    digest: 29504a896908357fa27731a5c37795ef46ea36d3210909d997876bf2d63f0451
+    name: targetgroup-senpai
+    type: application
+    urls:
+    - https://github.com/Drumato/helm-charts/releases/download/targetgroup-senpai-0.1.0/targetgroup-senpai-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-01-15T08:22:31.335475515Z"
