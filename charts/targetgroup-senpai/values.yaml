@@ -25,6 +25,10 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+rbac:
+  # Specifies whether RBAC resources should be created
+  create: true
+
 podAnnotations: {}
 podLabels: {}
 
@@ -88,9 +92,12 @@ env:
   - name: DELETE_ORPHAN_TARGET_GROUPS
     value: "true"  # Delete target groups without corresponding services
 
-# Secrets for sensitive environment variables
-# These will be created as a Kubernetes Secret and mounted as environment variables
-envSecret:
+# Secret name for sensitive environment variables
+# Reference to an existing Kubernetes Secret containing sensitive env vars
+envSecretName: "targetgroup-senpai-secret"
+# The Secret should contain keys like:
+#   AWS_ACCESS_KEY_ID
+#   AWS_SECRET_ACCESS_KEY
 
 
 

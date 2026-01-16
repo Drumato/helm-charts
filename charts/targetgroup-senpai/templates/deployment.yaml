@@ -42,15 +42,11 @@ spec:
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
-            {{- if $.Values.envSecret }}
-            {{- range $key, $value := $.Values.envSecret }}
-            - name: {{ $key }}
-              valueFrom:
-                secretKeyRef:
-                  name: {{ include "targetgroup-senpai.fullname" $ }}-secret
-                  key: {{ $key }}
-            {{- end }}
-            {{- end }}
+          {{- end }}
+          {{- if .Values.envSecretName }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.envSecretName }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
