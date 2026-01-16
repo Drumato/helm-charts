@@ -23,6 +23,16 @@ entries:
     version: 0.1.5
   targetgroup-senpai:
   - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2026-01-16T03:05:36.043213439Z"
+    description: A Helm chart of Drumato/targetgroup-senpai for Kubernetes
+    digest: ba1ab6e94e6f68943a69e9fd52301ab24afcca8efc89cbca875d58f9d9a2c5ca
+    name: targetgroup-senpai
+    type: application
+    urls:
+    - https://github.com/Drumato/helm-charts/releases/download/targetgroup-senpai-0.2.0/targetgroup-senpai-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 0.1.0
     created: "2026-01-16T02:05:50.712543848Z"
     description: A Helm chart of Drumato/targetgroup-senpai for Kubernetes
@@ -52,4 +62,4 @@ entries:
     urls:
     - https://github.com/Drumato/helm-charts/releases/download/targetgroup-senpai-0.1.0/targetgroup-senpai-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-16T02:05:50.712706598Z"
+generated: "2026-01-16T03:05:36.043230531Z"
