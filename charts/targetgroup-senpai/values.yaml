@@ -91,6 +91,8 @@ env:
     value: "3"  # Minimum number of instances required for target group operations
   - name: DELETE_ORPHAN_TARGET_GROUPS
     value: "true"  # Delete target groups without corresponding services
+  - name: CLUSTER_NAME
+    value: "my-cluster" # Name of the Kubernetes cluster
 
 # Secret name for sensitive environment variables
 # Reference to an existing Kubernetes Secret containing sensitive env vars
